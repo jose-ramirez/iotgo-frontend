@@ -1,5 +1,8 @@
 import './app'
+
 import './services'
+import './directive'
+import './filters'
 
 import './modules/html'
 import './modules/home'
@@ -10,3 +13,4 @@ import './modules/devices'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import 'fontawesome'

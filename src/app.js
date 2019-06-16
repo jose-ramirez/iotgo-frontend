@@ -1,9 +1,9 @@
 import './css/iotgo.css'
 import angular from 'angular'
-import ngRoute from 'angular-route'
-import ngResource from 'angular-resource'
+import 'angular-route'
+import 'angular-resource'
 
-const iotgo = angular.module('iotgo', [ 'ngRoute', 'ngResource' ])
+const iotgo = angular.module('iotgo', [ 'ngRoute', 'ngResource', 'gRecaptcha' ])
 
 iotgo
     .run([ '$location', function ($location) {
@@ -67,7 +67,7 @@ iotgo
                 requireBase: false
             });
 
-            // $httpProvider.interceptors.push('authInterceptor');
+            $httpProvider.interceptors.push('authInterceptor');
         }
     ])
 export default iotgo
