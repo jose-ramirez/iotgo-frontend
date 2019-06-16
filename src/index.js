@@ -13,4 +13,4 @@ import './modules/devices'
 
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import 'fontawesome'
+import './css/iotgo.css'

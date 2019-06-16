@@ -1,4 +1,3 @@
-import './css/iotgo.css'
 import angular from 'angular'
 import 'angular-route'
 import 'angular-resource'
