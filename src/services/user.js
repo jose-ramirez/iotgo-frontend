@@ -5,37 +5,28 @@ iotgo
     var session = undefined;
     return {
       register: function (email, password, response, callback) {
-        $http.post(Settings.httpServer + '/api/user/register',
-          {email: email, password: password, response: response}).
-          success(function (data) {
-            if (data.error) {
-              callback(data.error);
-              return;
-            }
-
+        $http.post(
+            `${Settings.httpServer}/api/user/register`,
+            {email: email, password: password, response: response})
+          .then(function (data) {
             session = data;
             $window.sessionStorage.token = session.jwt;
             callback(undefined, session.user);
-          }).
-          error(function () {
-            callback('Register user failed!');
-          });
+          }, function (error) {
+            callback(`Register user failed: ${error.data.error}`, undefined);
+          })
       },
       login: function (email, password, callback) {
-        $http.post(Settings.httpServer + '/api/user/login', {email: email, password: password}).
-          success(function (data) {
-            if (data.error) {
-              callback(data.error);
-              return;
-            }
-
+        $http.post(
+            `${Settings.httpServer}/api/user/login`,
+            {email: email, password: password})
+          .then(function (data) {
             session = data;
             $window.sessionStorage.token = session.jwt;
             callback(undefined, session.user);
-          }).
-          error(function () {
-            callback('Log in failed!');
-          });
+          }, function (error) {
+            callback(`Log in failed: ${error.data.error}`, undefined);
+          })
       },
       logout: function () {
         session = undefined;
