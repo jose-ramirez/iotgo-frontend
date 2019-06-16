@@ -67,7 +67,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/html/index.html",
+      template: "./src/modules/html/index.html",
       filename: "./index.html"
     }),
     new webpack.ProvidePlugin({
