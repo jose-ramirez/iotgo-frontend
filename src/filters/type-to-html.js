@@ -1,4 +1,4 @@
-import iotgo from './app'
+import iotgo from '../app'
 
 iotgo
   .filter('typeToHtml', function () {
