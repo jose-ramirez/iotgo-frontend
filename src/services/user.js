@@ -21,7 +21,7 @@ iotgo
             `${Settings.httpServer}/api/user/login`,
             {email: email, password: password})
           .then(function (data) {
-            session = data;
+            session = data.data;
             $window.sessionStorage.token = session.jwt;
             callback(undefined, session.user);
           }, function (error) {
@@ -36,19 +36,14 @@ iotgo
         return session ? true : false;
       },
       setPassword: function (oldPassword, newPassword, callback) {
-        $http.post(Settings.httpServer + '/api/user/password',
-          {oldPassword: oldPassword, newPassword: newPassword}).
-          success(function (data) {
-            if (data.error) {
-              callback(data.error);
-              return;
-            }
-
+        $http.post(
+            `${Settings.httpServer}/api/user/password`,
+            {oldPassword: oldPassword, newPassword: newPassword})
+          .then(function (data) {
             callback(undefined);
-          }).
-          error(function () {
-            callback('Change password failed!');
-          });
+          }, function (error) {
+            callback(`Change password failed: ${error.data.error}`);
+          })
       },
       getUser: function () {
         return session ? session.user : {};
@@ -77,13 +72,12 @@ iotgo
         return false;
       },
       activeAccount: function (callback) {
-        $http.get('/api/user/activeAccount').
-          success(function (data) {
+        $http.get('/api/user/activeAccount')
+          .then(function (data) {
             callback(data);
-          }).
-          error(function () {
-            callback('Active Account failed,Please retry!');
-          });
+          }, function (error) {
+            callback(`Active Account failed: ${error.data.error}`);
+          })
       }
     };
   }]);
