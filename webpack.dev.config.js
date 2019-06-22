@@ -69,10 +69,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/modules/html/index.html",
       filename: "./index.html"
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
     })
   ]
 }

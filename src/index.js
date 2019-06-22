@@ -11,6 +11,4 @@ import './modules/signup'
 import './modules/profile'
 import './modules/devices'
 
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './css/iotgo.css'
