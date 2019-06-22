@@ -1,22 +1,28 @@
 import iotgo from '../app'
 
-iotgo
-  .factory('authInterceptor', [ '$window', '$q', function ($window, $q) {
-      return {
-        request: function (config) {
-          config.headers = config.headers || {};
-          if ($window.sessionStorage.token) {
-            config.headers.Authorization = 'Bearer ' + $window.sessionStorage.token;
-          }
-          return config;
-        },
-        response: function (response) {
-          if (response.status === 401) {
-            $window.alert('Restricted area, please log in first!');
-            return;
-          }
+class AuthInterceptor{
+  constructor($window, $q){
+    this.q = $q
+    this.window = $window  
+  }
 
-          return response;
-        }
-      }
-    } ]);
+  request = (config) => {
+    config.headers = config.headers || {};
+    if (this.window.sessionStorage.token) {
+      config.headers.Authorization = `Bearer ${this.window.sessionStorage.token}`
+    }
+    return config
+  }
+
+  response = (response) => {
+    if (response.status === 401) {
+      this.window.alert('Restricted area, please log in first!');
+      return;
+    }
+
+    return response
+  }
+
+}
+
+iotgo.service('authInterceptor', AuthInterceptor)
