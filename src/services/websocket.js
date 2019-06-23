@@ -1,14 +1,46 @@
 import iotgo from '../app'
 
-iotgo
-.factory('WS', [ 'Settings', function (Settings) {
-  var ws;
-  var callbacks = [];
+class WebSocketService {
+  constructor(Settings){
+    this.Settings = Settings
+    this.ws = undefined
+    this.callbacks = []
+    this.connect(undefined)
+  }
+  
+  send(req) {
+    const vm = this
+    if (typeof req !== 'object' || req === null) {
+      return;
+    }
+  
+    req.userAgent = 'web';
+    req = angular.toJson(req);
+  
+    if (this.ws && this.ws.readyState === 1) {
+      this.ws.send(req);
+      return;
+    }
+  
+    this.connect(function () {
+      vm.ws.send(req);
+    });
+  }
 
-  var connect = function (send) {
-    ws = new WebSocket(Settings.websocketServer + '/api/ws');
+  addListener(callback) {
+    this.callbacks.push(callback);
+  }
 
-    ws.addEventListener('message', function (message) {
+  removeListener(callback) {
+    var _index = callbacks.indexOf(callback);
+    if (_index === -1) return;
+    callbacks.splice(_index, 1);
+  }
+
+  connect(send) {
+    this.ws = new WebSocket(this.Settings.websocketServer + '/api/ws');
+
+    this.ws.addEventListener('message', function (message) {
       try {
         var data = JSON.parse(message.data);
         callbacks.forEach(function (callback) {
@@ -20,46 +52,18 @@ iotgo
       }
     });
 
-    ws.addEventListener('error', function () {
+    this.ws.addEventListener('error', function () {
       console.log('WebSocket Error');
     });
 
-    ws.addEventListener('close', function () {
+    this.ws.addEventListener('close', function () {
       console.log('WebSocket closed!');
     });
 
     if (typeof send === 'function') {
       ws.addEventListener('open', send);
     }
-  };
+  }
+}
 
-  connect();
-
-  return {
-    send: function (req) {
-      if (typeof req !== 'object' || req === null) {
-        return;
-      }
-
-      req.userAgent = 'web';
-      req = angular.toJson(req);
-
-      if (ws && ws.readyState === 1) {
-        ws.send(req);
-        return;
-      }
-
-      connect(function () {
-        ws.send(req);
-      });
-    },
-    addListener: function (callback) {
-      callbacks.push(callback);
-    },
-    removeListener: function (callback) {
-      var _index = callbacks.indexOf(callback);
-      if (_index === -1) return;
-      callbacks.splice(_index, 1);
-    }
-  };
-} ]);
+iotgo.service('WS', WebSocketService)
