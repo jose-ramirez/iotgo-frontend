@@ -61,7 +61,7 @@ class WebSocketService {
     });
 
     if (typeof send === 'function') {
-      ws.addEventListener('open', send);
+      this.ws.addEventListener('open', send);
     }
   }
 }
