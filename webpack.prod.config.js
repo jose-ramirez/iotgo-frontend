@@ -52,6 +52,12 @@ module.exports = {
         use: [{loader: "url-loader"}]
       },
       {
+        test: /\.(ttf|eot|svg|gif|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+            loader: 'file-loader'
+        }]
+      },
+      {
         test: /\.css$/,
         use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
       }
@@ -59,9 +65,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/html/index.html",
-      filename: "./index.html",
-      excludeChunks: [ 'server' ]
+      template: "./src/modules/html/index.html",
+      filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
       filename: "[name].css",
