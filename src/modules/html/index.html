@@ -13,7 +13,7 @@
 </head>
 
 <body class="iotgo">
-  <div ng-controller="NavCtrl" class="navbar navbar-default">
+  <div ng-controller="NavCtrl as $ctrl" class="navbar navbar-default">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -34,11 +34,11 @@
           <li><a href="/contact">Contact Us</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li ng-show="isLoggedIn()"><a href="/devices">Devices</a></li>
-          <li ng-show="isLoggedIn()"><a href="/profile">Profile</a></li>
-          <li ng-show="isLoggedIn()"><a ng-click="logout()" href="/logout">Log out</a></li>
-          <li ng-hide="isLoggedIn()"><a href="/login">Log in</a></li>
-          <li ng-hide="isLoggedIn()"><a href="/signup">Sign up</a></li>
+          <li ng-show="$ctrl.isLoggedIn()"><a href="/devices">Devices</a></li>
+          <li ng-show="$ctrl.isLoggedIn()"><a href="/profile">Profile</a></li>
+          <li ng-show="$ctrl.isLoggedIn()"><a ng-click="logout()" href="/logout">Log out</a></li>
+          <li ng-hide="$ctrl.isLoggedIn()"><a href="/login">Log in</a></li>
+          <li ng-hide="$ctrl.isLoggedIn()"><a href="/signup">Sign up</a></li>
         </ul>
       </div>
     </div>
