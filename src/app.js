@@ -4,6 +4,7 @@ import 'angular-resource'
 import HomeTemplate from './modules/home/home.html'
 import LoginTemplate from './modules/login/login.html'
 import SignupTemplate from './modules/signup/signup.html'
+import DeviceTemplate from './modules/devices/devices.html'
 
 const iotgo = angular.module('iotgo', [ 'ngRoute', 'ngResource', 'gRecaptcha' ])
 
@@ -35,7 +36,7 @@ iotgo
                 controller: 'ProfileCtrl'
             })
             .when('/devices', {
-                templateUrl: './modules/devices/devices.html',
+                template: DeviceTemplate,
                 controller: 'DevicesCtrl'
             })
             .when('/pricing', {
