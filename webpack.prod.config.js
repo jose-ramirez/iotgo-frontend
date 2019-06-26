@@ -20,11 +20,11 @@ module.exports = {
   // Webpack 5 will likely come with one
   optimization: {
     minimizer: [
-      // new UglifyJsPlugin({
-      //   cache: true,
-      //   parallel: true,
-      //   sourceMap: true // set to true if you want JS source maps
-      // }),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
       new OptimizeCSSAssetsPlugin({})
     ]
   },
