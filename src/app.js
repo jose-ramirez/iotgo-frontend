@@ -5,6 +5,7 @@ import HomeTemplate from './modules/home/home.html'
 import LoginTemplate from './modules/login/login.html'
 import SignupTemplate from './modules/signup/signup.html'
 import DeviceTemplate from './modules/devices/devices.html'
+import ProfileTemplate from './modules/profile/profile.html'
 
 const iotgo = angular.module('iotgo', [ 'ngRoute', 'ngResource', 'gRecaptcha' ])
 
@@ -32,7 +33,7 @@ iotgo
                 controller: 'SignupCtrl'
             })
             .when('/profile', {
-                templateUrl: './modules/profile/profile.html',
+                templateUrl: ProfileTemplate,
                 controller: 'ProfileCtrl'
             })
             .when('/devices', {
