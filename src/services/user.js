@@ -1,6 +1,7 @@
 import iotgo from '../app'
 
 class UserService{
+  static get $inject() { return ['$http', '$window', 'Settings'] }
   constructor($http, $window, Settings){
     this.$http = $http
     this.$window = $window

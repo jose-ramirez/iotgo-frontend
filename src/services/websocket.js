@@ -1,6 +1,7 @@
 import iotgo from '../app'
 
 class WebSocketService {
+  static get $inject() { return ['Settings'] }
   constructor(Settings){
     this.Settings = Settings
     this.ws = undefined

@@ -1,6 +1,7 @@
 import iotgo from '../app'
 
 class SettingsService {
+  static get $inject() { return ['$location'] }
   constructor($location) {
     const debugHttpServer = `http://${$location.host()}:3000`
     const prodHttpServer = `https://${$location.host()}`
