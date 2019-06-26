@@ -1,6 +1,7 @@
 import iotgo from '../app'
 
 class AuthInterceptor{
+  static get $inject() { return ['$window', '$q'] }
   constructor($window, $q){
     this.q = $q
     this.window = $window  
