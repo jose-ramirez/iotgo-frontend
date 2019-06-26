@@ -5,7 +5,6 @@ import './directive'
 import './filters'
 
 import './modules/html'
-import './modules/home'
 import './modules/login'
 import './modules/signup'
 import './modules/profile'

@@ -1,6 +1,9 @@
 import angular from 'angular'
 import 'angular-route'
 import 'angular-resource'
+import HomeTemplate from './modules/home/home.html'
+import LoginTemplate from './modules/login/login.html'
+import SignupTemplate from './modules/signup/signup.html'
 
 const iotgo = angular.module('iotgo', [ 'ngRoute', 'ngResource', 'gRecaptcha' ])
 
@@ -17,15 +20,14 @@ iotgo
         function ($routeProvider, $locationProvider, $httpProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: './modules/home/home.html',
-                controller: 'HomeCtrl'
+                template: HomeTemplate,
             })
             .when('/login', {
-                templateUrl: './modules/login/login.html',
+                template: LoginTemplate,
                 controller: 'LoginCtrl'
             })
             .when('/signup', {
-                templateUrl: './modules/signup/signup.html',
+                templateUrl: SignupTemplate,
                 controller: 'SignupCtrl'
             })
             .when('/profile', {
