@@ -53,15 +53,16 @@ class WebSocketService {
       }
     });
 
-    this.ws.addEventListener('error', function () {
-      console.log('WebSocket Error');
+    this.ws.addEventListener('error', function (error) {
+      console.log('WebSocket Error:', error);
     });
 
-    this.ws.addEventListener('close', function () {
-      console.log('WebSocket closed!');
+    this.ws.addEventListener('close', function (event) {
+      console.log('WebSocket closed:', event);
     });
 
     if (typeof send === 'function') {
+      console.log(JSON.stringify(send))
       this.ws.addEventListener('open', send);
     }
   }
