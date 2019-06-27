@@ -29,11 +29,11 @@ iotgo
                 controller: 'LoginCtrl'
             })
             .when('/signup', {
-                templateUrl: SignupTemplate,
+                template: SignupTemplate,
                 controller: 'SignupCtrl'
             })
             .when('/profile', {
-                templateUrl: ProfileTemplate,
+                template: ProfileTemplate,
                 controller: 'ProfileCtrl'
             })
             .when('/devices', {
