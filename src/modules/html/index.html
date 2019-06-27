@@ -36,7 +36,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li ng-show="$ctrl.isLoggedIn()"><a href="/devices">Devices</a></li>
           <li ng-show="$ctrl.isLoggedIn()"><a href="/profile">Profile</a></li>
-          <li ng-show="$ctrl.isLoggedIn()"><a ng-click="logout()" href="/logout">Log out</a></li>
+          <li ng-show="$ctrl.isLoggedIn()"><a ng-click="$ctrl.logout()" href="/logout">Log out</a></li>
           <li ng-hide="$ctrl.isLoggedIn()"><a href="/login">Log in</a></li>
           <li ng-hide="$ctrl.isLoggedIn()"><a href="/signup">Sign up</a></li>
         </ul>
