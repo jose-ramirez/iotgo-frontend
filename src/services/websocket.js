@@ -1,12 +1,14 @@
 import iotgo from '../app'
 
 class WebSocketService {
+
   static get $inject() { return ['Settings'] }
+
   constructor(Settings){
     this.Settings = Settings
     this.ws = undefined
     this.callbacks = []
-    this.connect(undefined)
+    this.connect()
   }
   
   send(req) {
@@ -16,16 +18,14 @@ class WebSocketService {
     }
   
     req.userAgent = 'web';
-    req = angular.toJson(req);
+    req = JSON.stringify(req);
   
     if (this.ws && this.ws.readyState === 1) {
       this.ws.send(req);
       return;
     }
   
-    this.connect(function () {
-      vm.ws.send(req);
-    });
+    this.connect(() => vm.ws.send(req));
   }
 
   addListener(callback) {
@@ -38,32 +38,30 @@ class WebSocketService {
     callbacks.splice(_index, 1);
   }
 
-  connect(send) {
-    this.ws = new WebSocket(this.Settings.websocketServer + '/api/ws');
+  connect(sendCallback) {
+    const vm = this
+    this.ws = new WebSocket(`${this.Settings.websocketServer}/api/ws`);
 
     this.ws.addEventListener('message', function (message) {
       try {
         var data = JSON.parse(message.data);
-        callbacks.forEach(function (callback) {
-          callback(data);
-        });
+        vm.callbacks.forEach(callback => callback(data));
       }
       catch (err) {
-        // Do nothing
+        console.error('Error trying to send message:', err)
       }
     });
 
     this.ws.addEventListener('error', function (error) {
-      console.log('WebSocket Error:', error);
+      console.error('WebSocket Error:', error);
     });
 
     this.ws.addEventListener('close', function (event) {
-      console.log('WebSocket closed:', event);
+      console.error('WebSocket closed:', event);
     });
 
-    if (typeof send === 'function') {
-      console.log(JSON.stringify(send))
-      this.ws.addEventListener('open', send);
+    if (typeof sendCallback === 'function') {
+      this.ws.addEventListener('open', sendCallback);
     }
   }
 }
