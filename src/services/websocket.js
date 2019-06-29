@@ -61,7 +61,7 @@ class WebSocketService {
     });
 
     if (typeof sendCallback === 'function') {
-      this.ws.addEventListener('open', sendCallback);
+      this.ws.onopen = () => sendCallback();
     }
   }
 }
