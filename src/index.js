@@ -2,7 +2,6 @@ import './app'
 
 import './services'
 import './directive'
-import './filters'
 
 import './modules/html'
 import './modules/login'

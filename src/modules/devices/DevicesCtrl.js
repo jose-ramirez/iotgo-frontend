@@ -33,6 +33,7 @@ iotgo
         '02': 'light.html',
         '03': 'sensor-temperature-humidity.html'
       };
+      // why is this called multiple times before being actually needed?
       return device !== undefined ? (types[device.type] || types['00']) : '';
     }
 
