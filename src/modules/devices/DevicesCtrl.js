@@ -1,5 +1,8 @@
 import iotgo from '../../app'
-
+import custom from '../../images/custom.png'
+import powerSwitch from '../../images/switch.png'
+import tempSensor from '../../images/sensor-temperature-humidity.png'
+import light from '../../images/light.png'
 iotgo
 .controller('DevicesCtrl', [ '$scope', '$window', '$location', 'User', 'Devices',
   function ($scope, $window, $location, User, Devices) {
@@ -10,6 +13,17 @@ iotgo
     }
 
     var _devices;
+
+    $scope.typeToImg = (device) => {
+      var images = {
+        '00': custom,
+        '01': powerSwitch,
+        '02': light,
+        '03': tempSensor
+      };
+      let res = images[device.type] || images['00']
+      return res
+    }
 
     $scope.showModal = function (selector) {
       var deviceDetail = angular.element(selector);
