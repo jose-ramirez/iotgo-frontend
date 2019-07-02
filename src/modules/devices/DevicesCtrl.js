@@ -26,6 +26,16 @@ iotgo
       return res
     }
 
+    $scope.typeToHtml = (device) => {
+      var types = {
+        '00': 'custom.html',
+        '01': 'switch.html',
+        '02': 'light.html',
+        '03': 'sensor-temperature-humidity.html'
+      };
+      return device !== undefined ? (types[device.type] || types['00']) : '';
+    }
+
     $scope.showModal = function (selector) {
       var deviceDetail = angular.element(selector);
       deviceDetail.on('shown.bs.modal', function () {
