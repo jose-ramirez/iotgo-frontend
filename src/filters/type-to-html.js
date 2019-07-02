@@ -1,4 +1,8 @@
 import iotgo from '../app'
+import '../modules/devices/types/custom.html'
+import '../modules/devices/types/light.html'
+import '../modules/devices/types/switch.html'
+import '../modules/devices/types/sensor-temperature-humidity.html'
 
 iotgo
   .filter('typeToHtml', function () {

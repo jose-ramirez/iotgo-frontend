@@ -3,6 +3,7 @@ import custom from '../../images/custom.png'
 import powerSwitch from '../../images/switch.png'
 import tempSensor from '../../images/sensor-temperature-humidity.png'
 import light from '../../images/light.png'
+
 iotgo
 .controller('DevicesCtrl', [ '$scope', '$window', '$location', 'User', 'Devices',
   function ($scope, $window, $location, User, Devices) {
