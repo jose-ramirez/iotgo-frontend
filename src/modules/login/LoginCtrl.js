@@ -1,17 +1,27 @@
 import iotgo from '../../app'
 
-iotgo
-  .controller('LoginCtrl', [ '$scope', '$window', '$location', 'User',
-    function ($scope, $window, $location, User) {
-      $scope.login = function () {
-        User.login($scope.email, $scope.password, function (err, user) {
-          if (err) {
-            $window.alert(err);
-            return;
-          }
+class LoginController {
+  static get $inject() {
+    return ['$window', '$location', 'User']
+  }
 
-          $location.path('/devices');
-        });
-      };
-    }
-  ]);
+  constructor($window, $location, User) {
+    this.window = $window
+    this.location = $location
+    this.UserService = User
+  }
+
+  login() {
+    const that = this
+    this.UserService.login(this.email, this.password, function (err, user) {
+      if (err) {
+        that.window.alert(err);
+        return;
+      }
+
+      that.location.path('/devices');
+    });
+  }
+}
+
+iotgo.controller('LoginCtrl', LoginController)
