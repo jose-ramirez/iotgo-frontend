@@ -8,17 +8,18 @@ import iotgo from '../../app'
 //     }
 //   ]);
 
-class NavController{
+class NavController {
   static get $inject() { return ['User'] }
-  constructor(User){
+
+  constructor(User) {
     this.User = User
   }
-  
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.User.isLoggedIn()
   }
 
-  logout(){
+  logout() {
     this.User.logout()
   }
 }
