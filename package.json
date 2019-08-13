@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "1.0.0",
-  "description": "Frontend for the iot platform I'm (re)building",
+  "description": "Frontend for the iot platform I'm refactoring",
   "main": "iotgo.js",
   "scripts": {
     "build:dev": "rm -rf dist && webpack --mode development --config webpack.dev.config.js",
