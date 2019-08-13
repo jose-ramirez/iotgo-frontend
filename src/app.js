@@ -17,7 +17,8 @@ const iotgo = angular.module('iotgo', ['ngRoute', 'ngResource', 'gRecaptcha'])
 
 iotgo
     .run(['$location', '$templateCache', function ($location, $templateCache) {
-        // Permanent url support
+
+        // Permanent url support (what does this mean?)
         var path = $location.search().path;
         if (path) {
             $location.search('path', null);
