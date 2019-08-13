@@ -7,7 +7,7 @@ class SettingsService {
     const prodHttpServer = `https://${$location.host()}`
     const debugWebsocketServer = `ws://${$location.host()}:3000`
     const prodWebsocketServer = `wss://${$location.host()}`
-    this.httpServer = $location.protocol() === 'http' ? debugHttpServer : prodHttpServer,
+    this.httpServer = $location.protocol() === 'http' ? debugHttpServer : prodHttpServer
     this.websocketServer = $location.protocol() === 'http' ? debugWebsocketServer : prodWebsocketServer
   }
 }
